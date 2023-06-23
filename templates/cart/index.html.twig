@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container">
-		<h1 class="text-center mt-4">Votre panier</h1>
+		<h1 class="text-center mt-5">Votre panier</h1>
 		{% if items %}
 			<table class="table">
 				<thead>
@@ -37,6 +37,7 @@
 		{% else %}
 			<p>Votre panier est vide</p>
 		{% endif %}
+								<a href="{{path('cart_commande')}}" class="btn btn-info">Passer commande</a>
 
 	</div>
 {% endblock %}

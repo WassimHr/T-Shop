@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block body %}
+    <h1 class="edit-h1 text-center my-3">Mes commandes</h1>
+    {% if app.user.commandes is empty %}
+        <p>Aucune commande trouvée.</p>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <table class="table table-striped-columns mt-5 w-75 table-dark text-dark">
+            <thead>
+                <tr>
+                    <th>ID Commande</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Titre du produit</th>
+                    <th>Description</th>
+                    <th>Couleur</th>
+                    <th>Taille</th>
+                    <th>Quantité</th>
+                    <th>Montant</th>
+                    <th>État</th>
+                    <th>Date d'enregistrement</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in app.user.commandes %}
+    <tr>
+        <td>{{ commande.id }}</td>
+        <td>{{ commande.membre.nom }}</td>
+        <td>{{ commande.membre.prenom }}</td>
+            <td>{{ commande.produit.titre }}</td>
+            <td>{{ commande.produit.description|raw }}</td>
+            <td>{{ commande.produit.couleur }}</td>
+            <td>{{ commande.produit.taille }}</td>
+        <td>{{ commande.quantite }}</td>
+        <td>{{ commande.montant }}</td>
+        <td>{{ commande.etat }}</td>
+        <td>{{ commande.dateEnregistrement|date('Y-m-d H:i:s') }}</td>
+        
+        <td><a href="{{ path('cart_commande_delete', {'id': commande.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')" class="text-primary  me-3" style="font-size: 1.4rem; "><i class="fa fa-trash"></i></a></td>
+ 
+    </tr>
+{% endfor %}
+            </tbody>
+        </table>
+        </div>
+    {% endif %}
+{% endblock %}
