@@ -1,22 +1,22 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Home
 {% endblock %}
 
 {% block body %}
 
-	<section> 
+	<section>
 
 		<h1 class="text-center m-5">Tout nos T-Shirts</h1>
 		{#? Il y'a pas de foreach on parcourt le tableau avec la fonction for de twig #}
 		{#? L'argument avant le in est la valeure à chaque tour de boucle  #}
 		{#? L'argument après le in est le tableai a parcourir #}
-        <div class="card-container d-flex flex-wrap">
-			{% for item in produit %}
-				
+			<div class="card-container d-flex flex-wrap"> {% for item in produit %}
+
 				<div class="card-body p-5 bg-light rounded m-5 text-white">
 					<h2 class="card-title text-center">
-						{{item.titre}} {{item.couleur}}</h2>
+						{{item.titre}}
+						{{item.couleur}}</h2>
 					<img class="p-3" src="{{ asset('images/produit/' ~ item.photo )}}" alt="T-shirt" width="350">
 					<h5 class="card-title pt-2">
 						Description :
@@ -33,18 +33,21 @@
 						<h5 class="card-title">Stock :
 							{{item.stock}}</h5>
 						<h5 class="card-title">Prix :
-							{{item.prix}} €</h5>
+							{{item.prix}}
+							€</h5>
 					</div>
-                    <div class="text-center">
-                    <a class="btn btn-success mt-4" href="{{path('show', {id: item.id}) }}">Voir plus</a>
-                    </div>
+					<div class="text-center d-flex justify-content-between">
+						<a class="btn btn-success mt-4" href="{{path('show', {id: item.id}) }}">Voir plus</a>
+						<a href="{{path('cart_commande')}}" class="btn btn-info mt-4">Passer commande</a>
+
+					</div>
 
 
 				</div>
-			
 
-		{% endfor %}
-        </div>
+
+			{% endfor %}
+		</div>
 	</section>
 
-{% endblock %} 
+{% endblock %}
