@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    T-Shirt
+{% endblock %}
+
+
+{% block body %}
+<div class="row m-5">
+        <div class="card col-6 text-center m-auto">
+			
+				
+				<div class="card-body p-5 bg-light rounded m-5 text-white">
+					<h2 class="card-title text-center">
+						{{produit.titre}} {{produit.couleur}}</h2>
+					<img class="p-3" src="{{ asset('images/produit/' ~ produit.photo )}}" alt="T-shirt" width="350">
+					<h5 class="card-title pt-2">
+						Description :
+						{{produit.description | raw()}}</h5>
+					<h5 class="card-title">Couleur :
+						{{produit.couleur}}</h5>
+					<h5 class="card-title">Taille :
+						{{produit.taille}}</h5>
+					<h5 class="card-title">Collection :
+						{{produit.collection}}</h5>
+					<h5 class="metadata pb-5">Ajouté le :
+						{{produit.dateEnregistrement|date('m/d/Y')}}</h5>
+					<div class="d-flex justify-content-between">
+						<h5 class="card-title">Stock :
+							{{produit.stock}}</h5>
+						<h5 class="card-title">Prix :
+							{{produit.prix}} €</h5>
+					</div>
+                    <div class="text-center">
+                    <a class="btn btn-success mt-4" href="{{ path('cart_add', {id: produit.id}) }}">Ajouter au panier</a>
+                    </div>
+
+
+				</div>
+			
+</div>
+
+{% endblock %}
